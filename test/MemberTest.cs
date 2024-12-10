@@ -26,29 +26,23 @@ public class MemberTest
     [Fact(DisplayName = "Заранее определённый сотрудник должен присутствовать в списке")]
     public void CorrectIdsTest()
     {
-        // PREPARE
         var allMembers = CreateAllMembers(out var juniors, out var teamleads);
         var ready = new WorkerState.Ready(juniors[0], allMembers);
         var expected = teamleads.Select(it => it.Id).OrderBy(id => id).ToList();
 
-        // ACTION
         var preferences = ready.PreferencesGenerator.GenerateRandomSortedPreferences();
 
-        // ASSERT
         Assert.Equal(expected, preferences.OrderBy(id => id).ToList());
     }
 
     [Fact(DisplayName = "Размер списка должен совпадать с количеством тимлидов/джунов")]
     public void EmployeeContainsTest()
     {
-        // PREPARE
         var allMembers = CreateAllMembers(out var juniors, out var teamleads);
         var ready = new WorkerState.Ready(juniors[0], allMembers);
 
-        // ACTION
         var preferences = ready.PreferencesGenerator.GenerateRandomSortedPreferences();
 
-        // ASSERT
         Assert.Equal(juniors.Count, preferences.Count);
         Assert.Equal(teamleads.Count, preferences.Count);
     }

@@ -61,7 +61,7 @@ public class HarmonyService(
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error adding or updating team for hackathon: " + hackathonId);
+            Console.WriteLine("Error when updating team for hackathon: " + hackathonId);
         }
     }
 
@@ -164,7 +164,7 @@ public class HarmonyService(
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error adding or updating team for hackathon {Id}", hackathonId);
+            Console.WriteLine("Error when updating team for hackathon: " + hackathonId);
         }
     }
 }

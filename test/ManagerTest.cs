@@ -26,7 +26,6 @@ public class ManagerTest
     [Fact(DisplayName = "Количество команд должно совпадать с заранее заданным")]
     public void ShouldMatchExpectedTeamCount()
     {
-        // PREPARE
         const int hackathonId = 1;
         var service = new TeamCreationService();
         var employees = PrepareEmployees(5, 5);
@@ -36,10 +35,8 @@ public class ManagerTest
             service.AddPreferences(preferences);
         }
 
-        // ACTION
         var teams = service.BuildTeams(hackathonId);
 
-        // ASSERT
         Assert.Equal(employees.Count / 2, teams.Count);
     }
 
@@ -52,7 +49,6 @@ public class ManagerTest
 
         for (var j = 0; j < 3; j++)
         {
-            // PREPARE
             var service = new TeamCreationService();
             var employees = PrepareEmployees(5, 5);
             foreach (var employee in employees)
@@ -61,19 +57,16 @@ public class ManagerTest
                 service.AddPreferences(preferences);
             }
 
-            // ACTION
             var teams = service.BuildTeams(hackathonId);
             teamsList.Add(teams);
         }
 
-        // ASSERT
         Assert.All(teamsList, team => team.Equals(teamsList[0]));
     }
 
     [Fact(DisplayName = "Стратегия HRManager-а должна быть вызвана ровно один раз")]
     public void ShouldThrowOnSecondTeamBuildAttempt()
     {
-        // PREPARE
         const int hackathonId = 1;
         var service = new TeamCreationService();
         var employees = PrepareEmployees(5, 5);
@@ -83,10 +76,8 @@ public class ManagerTest
             service.AddPreferences(preferences);
         }
 
-        // ACTION
         var teams = service.BuildTeams(hackathonId);
 
-        // ASSERT
         Assert.NotEmpty(teams);
         Assert.Throws<InvalidOperationException>(() => service.BuildTeams(hackathonId));
     }

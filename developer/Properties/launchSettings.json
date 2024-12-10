@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "member": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "RABBITMQ_HOST_NAME": "localhost",
+        "RABBITMQ_DEFAULT_USER": "user",
+        "RABBITMQ_DEFAULT_PASS": "password",
+        "OPERATOR_URI": "localhost:8081"
+      }
+    }
+  }
+}

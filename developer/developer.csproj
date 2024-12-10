@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-member-da36316c-a9f1-479c-a341-89837b6e12f8</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CsvHelper" Version="33.0.1" />
+        <PackageReference Include="MassTransit" Version="8.3.3-develop.2143" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.3.3-develop.2143" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.3-develop.2143" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\contracts\contracts.csproj" />
+    </ItemGroup>
+</Project>

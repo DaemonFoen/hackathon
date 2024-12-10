@@ -1,0 +1,260 @@
+﻿services:
+  hrdirector:
+    image: hrdirector
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: hrdirector/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    ports:
+      - "9090:8080"
+    environment:
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+      DATABASE_URI: "Server=db;Port=5432;Database=hackathon;User Id=postgres;Password=postgres;"
+  
+  hrmanager:
+    image: hrmanager
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: hrmanager/Dockerfile
+    depends_on:
+      hrdirector:
+        condition: service_started
+      junior_1:
+        condition: service_started
+      teamlead_1:
+        condition: service_started
+    environment:
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+      DIRECTOR_URI: hrdirector:8080
+
+  junior_1:
+    image: developer
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ID: 1
+      TYPE: junior
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  junior_2:
+    image: developer
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ID: 2
+      TYPE: junior
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+
+  junior_3:
+    image: developer
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ID: 3
+      TYPE: junior
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password   
+  
+  junior_4:
+    image: developer
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ID: 4
+      TYPE: junior
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  junior_5:
+    image: developer
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ID: 5
+      TYPE: junior
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  teamlead_1:
+    image: developer
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    environment:
+      ID: 1
+      TYPE: teamlead
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  teamlead_2:
+    image: developer
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    environment:
+      ID: 2
+      TYPE: teamlead
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  teamlead_3:
+    image: developer
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    environment:
+      ID: 3
+      TYPE: teamlead
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+      
+  teamlead_4:
+    image: developer
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    environment:
+      ID: 4
+      TYPE: teamlead
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+      
+  teamlead_5:
+    image: developer
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: developer/Dockerfile
+    environment:
+      ID: 5
+      TYPE: teamlead
+      RABBITMQ_HOST_NAME: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASSWORD: password
+  
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+    environment:
+      RABBITMQ_LOGS: "true"
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_logs:/var/log/rabbitmq
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 5s
+      timeout: 0s
+      retries: 5
+
+  db:
+    image: postgres:15
+    networks:
+      - app-network
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hackathon
+    ports:
+      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  rabbitmq_data:
+    driver: local
+  rabbitmq_logs:
+    driver: local
+#  postgres_data:
+#    driver: local
+
+networks:
+  app-network:
+    driver: bridge

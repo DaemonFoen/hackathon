@@ -1,5 +1,6 @@
 using contracts;
-using developer.Domain;
+using developer;
+using developer.Entities;
 using Type = contracts.Type;
 
 namespace test;
@@ -27,10 +28,10 @@ public class MemberTest
     public void CorrectIdsTest()
     {
         var allMembers = CreateAllMembers(out var juniors, out var teamleads);
-        var ready = new WorkerState.Ready(juniors[0], allMembers);
+        var generator = new PreferencesGenerator(juniors[0], allMembers);
         var expected = teamleads.Select(it => it.Id).OrderBy(id => id).ToList();
 
-        var preferences = ready.PreferencesGenerator.GenerateRandomSortedPreferences();
+        var preferences = generator.GenerateRandomSortedPreferences();
 
         Assert.Equal(expected, preferences.OrderBy(id => id).ToList());
     }
@@ -39,9 +40,9 @@ public class MemberTest
     public void EmployeeContainsTest()
     {
         var allMembers = CreateAllMembers(out var juniors, out var teamleads);
-        var ready = new WorkerState.Ready(juniors[0], allMembers);
+        var generator = new PreferencesGenerator(juniors[0], allMembers);
 
-        var preferences = ready.PreferencesGenerator.GenerateRandomSortedPreferences();
+        var preferences = generator.GenerateRandomSortedPreferences();
 
         Assert.Equal(juniors.Count, preferences.Count);
         Assert.Equal(teamleads.Count, preferences.Count);

@@ -2,7 +2,7 @@ using System.Globalization;
 using contracts;
 using CsvHelper;
 using CsvHelper.Configuration;
-using developer.Domain;
+using developer.Entities;
 using MassTransit;
 using Type = contracts.Type;
 

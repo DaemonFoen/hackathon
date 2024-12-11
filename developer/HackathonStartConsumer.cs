@@ -1,5 +1,5 @@
 ﻿using contracts;
-using developer.Domain;
+using developer.Entities;
 using MassTransit;
 
 namespace developer;
@@ -25,11 +25,10 @@ public class HackathonStartConsumer
         Console.WriteLine(developer);
         Console.WriteLine("--- MASSAGE CONSUME ---");
             
-        var state = new WorkerState.Ready(developer, allDevs);
         var generator = new PreferencesGenerator(developer, allDevs);
         var preferences = generator.GenerateRandomSortedPreferences();
         var preferencesResponse = new Preferences(context.Message.HackathonId,
-            state.Developer, preferences);
+            developer, preferences);
             
         Console.WriteLine($"Junior Received: ID {context.Message.HackathonId}");
 

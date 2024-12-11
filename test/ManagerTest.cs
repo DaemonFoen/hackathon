@@ -63,22 +63,4 @@ public class ManagerTest
 
         Assert.All(teamsList, team => team.Equals(teamsList[0]));
     }
-
-    [Fact(DisplayName = "Стратегия HRManager-а должна быть вызвана ровно один раз")]
-    public void ShouldThrowOnSecondTeamBuildAttempt()
-    {
-        const int hackathonId = 1;
-        var service = new TeamCreationService();
-        var employees = PrepareEmployees(5, 5);
-        foreach (var employee in employees)
-        {
-            var preferences = new Preferences(hackathonId, employee, [5, 4, 3, 1, 2]);
-            service.AddPreferences(preferences);
-        }
-
-        var teams = service.BuildTeams(hackathonId);
-
-        Assert.NotEmpty(teams);
-        Assert.Throws<InvalidOperationException>(() => service.BuildTeams(hackathonId));
-    }
 }

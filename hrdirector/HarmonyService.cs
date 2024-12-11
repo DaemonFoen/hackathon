@@ -49,8 +49,7 @@ public class HarmonyService(
 
             while (hackathon.Preferences.Count < teams.Count)
             {
-                Console.WriteLine("Teams is creating, wait preferences");
-                Thread.Sleep(200);
+                Thread.Sleep(10);
             }
 
             hackathon.Teams.AddRange(teams);

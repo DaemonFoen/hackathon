@@ -1,6 +1,6 @@
-using contracts;
+﻿using contracts;
 
-namespace developer.Domain;
+namespace developer.Entities;
 
 public record AllDevs(List<Developer> Junior, List<Developer> Teamlead);
 

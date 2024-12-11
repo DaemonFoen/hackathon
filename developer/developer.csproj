@@ -19,4 +19,8 @@
     <ItemGroup>
         <ProjectReference Include="..\contracts\contracts.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Properties\launchSettings.json" />
+    </ItemGroup>
 </Project>

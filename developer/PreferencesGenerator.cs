@@ -1,7 +1,8 @@
-using contracts;
+﻿using contracts;
+using developer.Entities;
 using Type = contracts.Type;
 
-namespace developer.Domain;
+namespace developer;
 
 public class PreferencesGenerator(Developer developer, AllDevs allDevs)
 {

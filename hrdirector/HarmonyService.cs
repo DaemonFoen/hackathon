@@ -19,13 +19,19 @@ public class HarmonyService(
         {
             using var context = contextFactory.CreateDbContext();
             Console.WriteLine("Hackathon id: " + hackathonId + " preferences: " + preferences.Id);
-            var hackathon = context.Entities.FirstOrDefault(e => e.HackathonId == hackathonId);
+            var hackathon = context.Entities.First(e => e.HackathonId == hackathonId);
             if (hackathon == null)
             {
                 throw new InvalidOperationException("Could not find hackathon with id: " + hackathonId);
             }
             
             hackathon.Preferences.Add(preferences);
+            Console.WriteLine("Hackathon teams: " + hackathon.Teams);
+            if (hackathon.Teams.Count != 0 && hackathon.Teams.Count == hackathon.Preferences.Count)
+            {
+                hackathon.Harmony = CalculateHarmony(hackathon.Teams, hackathon.Preferences);
+            }
+            
             context.Entities.Update(hackathon);
 
             context.SaveChanges();
@@ -36,6 +42,7 @@ public class HarmonyService(
         }
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void AddTeams(int hackathonId, List<Team> teams)
     {
         using var context = contextFactory.CreateDbContext();
@@ -47,13 +54,11 @@ public class HarmonyService(
                 throw new InvalidOperationException("hackathon is null");
             }
 
-            while (hackathon.Preferences.Count < teams.Count)
-            {
-                Thread.Sleep(10);
-            }
-
             hackathon.Teams.AddRange(teams);
-            hackathon.Harmony = CalculateHarmony(hackathon.Teams, hackathon.Preferences);
+            if (hackathon.Preferences.Count == 10 && teams.Count == hackathon.Preferences.Count)
+            { 
+                hackathon.Harmony = CalculateHarmony(hackathon.Teams, hackathon.Preferences);
+            }
             context.Entities.Update(hackathon);
 
             context.SaveChanges();

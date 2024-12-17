@@ -17,6 +17,7 @@ public class PreferencesResponseConsumer(
         Console.WriteLine("Hackathon: " + context.Message.Id + " Dev: " + context.Message.Developer);
         teamCreationService.AddPreferences(context.Message);
 
+        Console.WriteLine("team is ready? " + teamCreationService.IsTeamReady(context.Message.Id));
         if (teamCreationService.IsTeamReady(context.Message.Id))
         {
             Console.WriteLine("Team Ready");

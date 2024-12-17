@@ -48,7 +48,7 @@
       dockerfile: developer/Dockerfile
     depends_on:
       rabbitmq:
-        condition: service_started
+        condition: service_healthy
     environment:
       ID: 1
       TYPE: junior

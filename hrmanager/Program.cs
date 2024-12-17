@@ -17,7 +17,8 @@ public static class Program
     private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton(_ => GetDirectorSettings(configuration));
-        services.AddSingleton(_ => new TeamCreationService());
+        services.AddSingleton(_ => new TeamBuildingService());
+        services.AddSingleton<TeamCreationService>();
         
         services.AddMassTransit(x =>
         {

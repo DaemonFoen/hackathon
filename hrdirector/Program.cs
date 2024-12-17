@@ -2,6 +2,7 @@ using contracts;
 using Hrdirector;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace hrdirector;
 
@@ -29,6 +30,7 @@ public static class Program
 
     private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        // services.AddHealthChecks();
         services.AddMassTransit(x =>
         {
             x.AddConsumer<PreferencesResponseConsumer>();

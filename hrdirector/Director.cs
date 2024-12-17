@@ -9,7 +9,7 @@ public class Director(
     HarmonyService harmonyService) : BackgroundService
 {
     private const int TotalHackathons = 10;
-    private static readonly TimeSpan HackathonStartDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan HackathonStartDelay = TimeSpan.FromSeconds(5);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -30,6 +30,8 @@ public class Director(
     {
         var app = WebApplication.CreateBuilder().Build();
      
+        // app.MapHealthChecks("/health");
+        
         app.MapPost("/teams", TeamsRequestHandler);
 
         app.MapGet("/hackathon", (HttpContext context) =>

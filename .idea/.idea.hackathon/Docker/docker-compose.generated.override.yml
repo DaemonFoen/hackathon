@@ -2,7 +2,7 @@
 services:
   hrdirector:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "hrdirector/Dockerfile"
       target: "base"
     command: []
@@ -15,13 +15,13 @@ services:
     image: "hrdirector:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\hrdirector:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\hrdirector:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   hrmanager:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "hrmanager/Dockerfile"
       target: "base"
     command: []
@@ -34,13 +34,13 @@ services:
     image: "hrmanager:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\hrmanager:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\hrmanager:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   junior_1:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -53,13 +53,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   junior_2:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -72,13 +72,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   junior_3:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -91,13 +91,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   junior_4:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -110,13 +110,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   junior_5:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -129,13 +129,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   teamlead_1:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -148,13 +148,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   teamlead_2:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -167,13 +167,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   teamlead_3:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -186,13 +186,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   teamlead_4:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -205,13 +205,13 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"
   teamlead_5:
     build:
-      context: "C:\\Users\\golen\\RiderProjects\\hackathon"
+      context: "C:\\Users\\Dmitriy\\RiderProjects\\hackathon"
       dockerfile: "developer/Dockerfile"
       target: "base"
     command: []
@@ -224,7 +224,7 @@ services:
     image: "developer:dev"
     ports: []
     volumes:
-    - "C:\\Users\\golen\\RiderProjects\\hackathon\\developer:/app:rw"
-    - "C:\\Users\\golen\\RiderProjects\\hackathon:/src:rw"
-    - "C:\\Users\\golen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon\\developer:/app:rw"
+    - "C:\\Users\\Dmitriy\\RiderProjects\\hackathon:/src:rw"
     working_dir: "/app"

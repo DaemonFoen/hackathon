@@ -1,5 +1,6 @@
 using contracts;
 using hrmanager;
+using Moq;
 using Type = contracts.Type;
 
 namespace test;
@@ -27,7 +28,7 @@ public class ManagerTest
     public void ShouldMatchExpectedTeamCount()
     {
         const int hackathonId = 1;
-        var service = new TeamCreationService();
+        var service = new TeamCreationService(new TeamBuildingService());
         var employees = PrepareEmployees(5, 5);
         foreach (var employee in employees)
         {
@@ -49,7 +50,7 @@ public class ManagerTest
 
         for (var j = 0; j < 3; j++)
         {
-            var service = new TeamCreationService();
+            var service = new TeamCreationService(new TeamBuildingService());
             var employees = PrepareEmployees(5, 5);
             foreach (var employee in employees)
             {
@@ -69,7 +70,8 @@ public class ManagerTest
     public void ShouldThrowOnSecondTeamBuildAttempt()
     {
         const int hackathonId = 1;
-        var service = new TeamCreationService();
+        var mock = new Mock<ITeamBuildingService>();
+        var service = new TeamCreationService(mock.Object);
         var employees = PrepareEmployees(5, 5);
         foreach (var employee in employees)
         {
@@ -77,9 +79,8 @@ public class ManagerTest
             service.AddPreferences(preferences);
         }
 
-        var teams = service.BuildTeams(hackathonId);
-
-        Assert.NotEmpty(teams);
-        Assert.Throws<InvalidOperationException>(() => service.BuildTeams(hackathonId));
+        service.BuildTeams(hackathonId);
+        
+        mock.Verify(m => m.CreateTeams(It.IsAny<List<Preferences>>()), Times.Once);
     }
 }

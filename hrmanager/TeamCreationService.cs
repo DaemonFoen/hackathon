@@ -35,14 +35,17 @@ public class TeamCreationService(ITeamBuildingService teamBuildingService)
 
     public List<Team> BuildTeams(int hackathonId)
     {
-        if (!_hackathonPreferences.TryGetValue(hackathonId, out var preferences))
+        lock (ClassLock)
         {
-            throw new InvalidOperationException("Hackathon preferences not found.");
-        }
+            if (!_hackathonPreferences.TryGetValue(hackathonId, out var preferences))
+            {
+                throw new InvalidOperationException("Hackathon preferences not found.");
+            }
 
-        var teams = teamBuildingService.CreateTeams(preferences);
-        RemoveHackathonPreferences(hackathonId);
-        return teams;
+            var teams = teamBuildingService.CreateTeams(preferences);
+            RemoveHackathonPreferences(hackathonId);
+            return teams;
+        }
     }
 
     private void RemoveHackathonPreferences(int hackathonId)

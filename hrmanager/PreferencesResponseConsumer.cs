@@ -12,18 +12,23 @@ public class PreferencesResponseConsumer(
 {
     private readonly HttpClient _client = new();
 
+    private static readonly object ClassLock = new();
+
     public async Task Consume(ConsumeContext<Preferences> context)
     {
-        Console.WriteLine("Hackathon: " + context.Message.Id + " Dev: " + context.Message.Developer);
-        teamCreationService.AddPreferences(context.Message);
-
-        Console.WriteLine("team is ready? " + teamCreationService.IsTeamReady(context.Message.Id));
-        if (teamCreationService.IsTeamReady(context.Message.Id))
+        lock (ClassLock)
         {
-            Console.WriteLine("Team Ready");
-            var teams = teamCreationService.BuildTeams(context.Message.Id);
-            Console.WriteLine("Team size: "  + teams.Count);
-            await NotifyDirectorAsync(new CreatedTeams(context.Message.Id, teams));
+            Console.WriteLine("Hackathon: " + context.Message.Id + " Dev: " + context.Message.Developer);
+            teamCreationService.AddPreferences(context.Message);
+
+            Console.WriteLine("team is ready? " + teamCreationService.IsTeamReady(context.Message.Id));
+            if (teamCreationService.IsTeamReady(context.Message.Id))
+            {
+                Console.WriteLine("Team Ready");
+                var teams = teamCreationService.BuildTeams(context.Message.Id);
+                Console.WriteLine("Team size: " + teams.Count);
+                NotifyDirectorAsync(new CreatedTeams(context.Message.Id, teams));
+            }
         }
     }
 
@@ -34,7 +39,7 @@ public class PreferencesResponseConsumer(
 
         var payload = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8,
             "application/json");
-        
+
         while (true)
         {
             try

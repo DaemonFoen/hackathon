@@ -8,8 +8,8 @@ namespace Hrdirector;
 public class Director(
     HarmonyService harmonyService) : BackgroundService
 {
-    private const int TotalHackathons = 10;
-    private static readonly TimeSpan HackathonStartDelay = TimeSpan.FromSeconds(5);
+    private const int TotalHackathons = 5;
+    private static readonly TimeSpan HackathonStartDelay = TimeSpan.FromSeconds(10);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

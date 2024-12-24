@@ -11,6 +11,8 @@
         condition: service_healthy
       db:
         condition: service_healthy
+      hrmanager:
+        condition: service_started
     ports:
       - "9090:8080"
     environment:
@@ -27,8 +29,6 @@
       context: .
       dockerfile: hrmanager/Dockerfile
     depends_on:
-      hrdirector:
-        condition: service_started
       junior_1:
         condition: service_started
       teamlead_1:

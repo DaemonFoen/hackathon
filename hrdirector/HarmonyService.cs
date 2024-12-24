@@ -115,7 +115,9 @@ public class HarmonyService(
     public async Task StartHackathonsAsync(int totalHackathons, TimeSpan delay)
     {
         await using var context = await contextFactory.CreateDbContextAsync();
-
+        
+        Thread.Sleep(3000);
+        
         for (var i = 0; i < totalHackathons; i++)
         {
             await Task.Delay(delay);

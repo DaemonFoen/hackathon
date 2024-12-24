@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
@@ -24,9 +24,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\hrdirector\hrdirector.csproj" />
-      <ProjectReference Include="..\hrmanager\hrmanager.csproj" />
-      <ProjectReference Include="..\developer\developer.csproj" />
+        <ProjectReference Include="..\hrdirector\hrdirector.csproj" />
+        <ProjectReference Include="..\hrmanager\hrmanager.csproj" />
+        <ProjectReference Include="..\developer\developer.csproj" />
     </ItemGroup>
 
 </Project>
